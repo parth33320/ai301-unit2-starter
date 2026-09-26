@@ -1,53 +1,17 @@
 # Rubric: is this reproduction package ready to post?
 
-<!--
-THIS IS THE PART YOU WRITE. The skill in SKILL.md executes whatever
-checks you define here. It ships empty on purpose: the judgment is your
-work.
-
-A filled rubric must contain:
-
-1. At least one row in the checks table. Each row needs all four
-   columns:
-   - Check: a short name (used in the output JSON).
-   - Evidence: exactly what to look at, and where in the package. Name
-     the part (the claim comment, the repro report's environment
-     record, the artifacts read against the issue's description, the
-     repo-facts block) or a location from your
-     references/evidence-guide.md. "The report" is not a source; "the
-     output excerpt read against the error the issue describes" is.
-   - Pass condition: a decision rule about the OUTCOME that someone
-     else could apply and get your answer. Judge the thing itself (does
-     the artifact show the issue's behavior?), never the write-up's
-     shape (how many steps it has, how long it is, whether it uses a
-     template's headings). Structure-shaped checks are what make
-     graders disagree with themselves.
-   - Weight: `required` (a fail here holds the package) or `preferred`
-     (never changes the verdict).
-
-2. A verdict rule below the table: how the check grades combine into
-   accept (ready) or reject (hold), including how `unclear` is
-   treated. The verdict space is binary. If you write no rule for
-   `unclear`, the skill treats it as fail.
-
-Cover what actually gets bad packages posted. The lecture named the
-proof families: the environment is recorded, the steps are complete
-and followable, the behavior shown matches the issue (not an adjacent
-one), the outcome is stated honestly (an evidenced cannot-reproduce is
-a pass, a confident wrong-target is not), and the words respect the
-repo's conventions. A rubric that ignores a family will fail eval
-packages designed around that family.
--->
-
 ## Checks
 
 | Check | Evidence | Pass condition | Weight |
 |---|---|---|---|
-|  |  |  |  |
+| environment_recorded | The candidate repro report's environment section and header block | The report explicitly names the environment details (such as operating system, CLI/tool version, and runtime/driver specifications) and explicitly acknowledges any version or platform deviation from the issue description | required |
+| followable_and_public_steps | The candidate repro report's reproduction steps, configuration files, and repository setup instructions | The steps are exact, complete, sequentially followable by a stranger starting from a fresh setup, and rely on shared/public configurations rather than unshared private monorepos or private configs | required |
+| exact_trigger_syntax | The reproduction commands, CLI arguments, and input syntax in candidate repro report compared directly against the issue context description | The commands and inputs match the specific trigger syntax, CLI options, and arguments described in the issue (or an explicit control run), without altering arguments/syntax to cause unrelated compilation, unbound variable, or CLI validation errors | required |
+| matching_artifacts_shown | Terminal outputs, logs, and stack traces in candidate repro report compared directly against expected vs. actual outcomes described in the issue | The report contains terminal output/artifacts that directly demonstrate the specific failing behavior, crash, or panic reported in the issue (or output from a systematic attempt for an honest cannot-reproduce report). Non-bug artifacts such as graceful validation exits, normal session banners, or active escape sequences are not presented as confirming the reported crash | required |
+| honest_and_evidenced_claims | Narrative claims in candidate claim comment and repro report evaluated against the attached artifacts | All claims of reproduction, non-reproduction, or root cause diagnosis are strictly supported by shown artifacts, avoiding unbacked root-cause assertions, pure "+1 / me too" claims without artifacts, or false confirmation claims | required |
+| specific_modest_claim_comment | Candidate claim comment text evaluated against the issue topic and repo context | The claim comment is human-voiced and specific to the issue's findings or reproduction intent, avoiding generic assign-me boilerplate, generic 2-day fix guarantees, or pure "+1" comments | required |
+| repo_ai_disclosure | Repository generative AI policy in repo-facts block and candidate claim comment or repro report text | If the repository's stated policy in repo-facts requires disclosure when generative AI tools are used (e.g. ghostty or p5.js AI disclosure policies), the candidate comments explicitly disclose AI tool assistance | required |
 
 ## Verdict rule
 
-<!-- State how the grades above combine into accept or reject, and how
-unclear is treated. Example shape (write your own): "accept if every
-required check passes; preferred checks never change the verdict;
-unclear counts as fail." -->
+Accept the reproduction package if every required check receives a `pass` grade. If any required check receives a `fail` or `unclear` grade, reject the reproduction package. Preferred checks (if any) never change the verdict.
