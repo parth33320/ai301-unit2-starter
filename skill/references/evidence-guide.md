@@ -5,11 +5,11 @@ This guide maps every proof family to its exact location in a package (or on Git
 ## Environment
 
 - **Where it lives**:
-  - *Eval mode*: The candidate repro report (under environment/system specifications or header blocks) and candidate claim comment in the package bundle.
+  - *Eval mode*: The candidate repro report (under environment/system specifications or header blocks) and candidate claim comment in the package bundle, compared against the Issue description and Thread highlights.
   - *Live mode*: The student's draft repro report, draft claim comment, or the issue thread details.
 - **What good looks like**:
   - The report explicitly records the operating system, package/tool version, and relevant runtime/driver/environment details.
-  - If the tested environment or version differs from the version in the issue report, the version delta is explicitly acknowledged and noted.
+  - The evaluator must compare the candidate's reported version/platform against the version/platform in the Issue description and Thread highlights. If the tested version or platform differs (for example, testing an older version like pandas 1.5.3 when the issue specifies latest/main or pandas 2.3.3+), the version delta MUST be explicitly acknowledged in the report text. Testing an unacknowledged different version is a FAIL for environment_recorded.
   - The setup uses public, reproducible configurations rather than unshared private monorepos or unshared private configs that a stranger cannot re-run.
 
 ## Steps
